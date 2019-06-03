@@ -23,7 +23,7 @@ export default createBottomTabNavigator(
             },
         },
         // 路由 - 视频
-        Attention: {
+        Video: {
             screen: Video,
             navigationOptions: {
                 tabBarIcon: ({focused, horizontal, tintColor}) => (
@@ -35,7 +35,7 @@ export default createBottomTabNavigator(
 
         },
         // 路由 - 关注
-        Message: {
+        Attention: {
             screen: Attention,
             navigationOptions: {
                 tabBarIcon: ({focused, horizontal, tintColor}) => (

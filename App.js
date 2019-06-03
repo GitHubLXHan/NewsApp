@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import {Image, Text, SafeAreaView,Button,StatusBar, StyleSheet }from 'react-native';
-import { createBottomTabNavigator, createAppContainer, createStackNavigator,createSwitchNavigator,createMaterialTopTabNavigator } from 'react-navigation';
+import {StatusBar}from 'react-native';
+import {createAppContainer} from 'react-navigation';
 
 import MyBottomTabNavigator from "./Component/MyBottomTabNavigator";
 
@@ -26,9 +26,7 @@ export default class HelloWorldApp extends React.Component {
 
     render() {
         return (
-
             <AppContainer/>
-
         );
     }
 }

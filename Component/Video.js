@@ -13,15 +13,36 @@ import Recommend from "./VideoRecommend";
 
 export default class Video extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         // 设置白底黑字
         StatusBar.setBarStyle('dark-content');
         // 设置’沉浸式‘状态栏；setTranslucent()方法说是使状态栏透明（即状态栏呈现’沉浸式‘），而不是指状态栏背景为透明
         StatusBar.setTranslucent(true);
+
+        // 注册 willBlur监听事件，在该页面失去焦点时触发
+        // props.navigation.addListener('willBlur', this._setStatusBarOnWillBlur)
+
+        // 注册 willFocus监听事件，在该页面获取焦点时触发
+        props.navigation.addListener('willFocus', this._setStatusBarOnWillFocus)
+    }
+
+    // 该页面失去焦点时触发
+    _setStatusBarOnWillBlur = ()=> {
+        console.log("Video失去焦点");
+        StatusBar.setBackgroundColor('transparent');
+    }
+
+    // 该页面获取焦点时触发
+    _setStatusBarOnWillFocus = ()=> {
+        console.log("Video获取焦点");
+
         // 设置状态栏背景透明
         StatusBar.setBackgroundColor('#ffffff');
     }
+
+
+
 
     render() {
         return <ScrollableTabView
@@ -32,7 +53,6 @@ export default class Video extends React.Component {
             tabBarTextStyle={{fontWeight: 'normal'}}
             tabBarActiveTextColor={'#ff1f11'}
             tabBarInactiveTextColor={'#b2b2b2'}
-
         >
             <Recommend tabLabel='推荐'/>
             <Recommend tabLabel='小视频'/>

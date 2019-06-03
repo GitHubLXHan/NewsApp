@@ -5,8 +5,7 @@ import {View, Button, Image, Text, StatusBar, TouchableOpacity, StyleSheet} from
 export default class MineHeader extends React.Component {
     constructor() {
         super();
-        // 设置白底黑字
-        StatusBar.setBarStyle('dark-content');
+
     }
 
     render() {

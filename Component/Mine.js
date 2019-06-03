@@ -7,15 +7,15 @@
  */
 
 import React from 'react';
-import {StyleSheet, Text, View, TextInput, FlatList, Button, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, FlatList, TouchableOpacity, StatusBar} from 'react-native';
 import MineHeader from "./MineHeader";
 import MineFoot from "./MineFoot";
 
 
 export default class Mine extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             data:[
                 {content: '我的关注', info: '用户/主题 >'},
@@ -28,8 +28,31 @@ export default class Mine extends React.Component {
                 {content:'我的钱包', info:'>'},
             ]
         }
+        // 设置白底黑字
+        StatusBar.setBarStyle('dark-content');
+        // 设置’沉浸式‘状态栏；setTranslucent()方法说是使状态栏透明（即状态栏呈现’沉浸式‘），而不是指状态栏背景为透明
+        StatusBar.setTranslucent(true);
+
+        // 注册 willBlur监听事件，在该页面失去焦点时触发
+        // props.navigation.addListener('willBlur', this._setStatusBarOnWillBlur)
+
+        // 注册 willFocus监听事件，在该页面获取焦点时触发
+        props.navigation.addListener('willFocus', this._setStatusBarOnWillFocus)
     }
 
+    // 该页面失去焦点时触发
+    _setStatusBarOnWillBlur = ()=> {
+        console.log("Mine失去焦点");
+        StatusBar.setBackgroundColor('transparent');
+    }
+
+    // 该页面获取焦点时触发
+    _setStatusBarOnWillFocus = ()=> {
+        console.log("Mine获取焦点");
+
+        // 设置状态栏背景透明
+        StatusBar.setBackgroundColor('#ffffff');
+    }
 
     renderRow(rowData) {
         return <TouchableOpacity>

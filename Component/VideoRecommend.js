@@ -64,7 +64,6 @@ export default class  Recommend extends React.Component {
     }
 }
 
-
 const styles = StyleSheet.create(
     {
         container: {
